@@ -92,6 +92,9 @@ export { provider, app, auth, signInWithPopup }
 ![image](https://user-images.githubusercontent.com/83042566/216135896-a2b595a9-92e9-466b-afb5-fb301b56941a.png)
 ![image](https://user-images.githubusercontent.com/83042566/216135360-bae48aba-913c-4d29-84bc-ec762184042a.png)
 
+## Quando publicar o projeto, lembre-se de adicionar os "Domínios autorizados":
+![image](https://user-images.githubusercontent.com/83042566/216141831-7e01d374-dba5-4def-a88b-a937062dd06e.png)
+
 
 Você também pode ver erros no console.
 ```
