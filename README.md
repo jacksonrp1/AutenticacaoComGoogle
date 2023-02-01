@@ -1,70 +1,108 @@
-# Getting Started with Create React App
+<div style="display: inline">
+  <a href="https://www.jacksondev.com.br/" target="_blank">
+    <img src="https://img.shields.io/static/v1?label=Website&message=JacksonDev&color=red&style=for-the-badge&logo=webflow"/>
+  </a>
+  <a href="https://pt-br.reactjs.org/" target="_blank">
+    <img src="https://img.shields.io/static/v1?label=&message=React Js&color=202124&style=flat-square&logo=react"/>
+  </a>
+  
+  <a href="https://styled-components.com/" target="_blank">
+    <img src="https://img.shields.io/static/v1?label=&message=Styled Components&color=202124&style=flat-square&logo=styled-components"/>
+  </a>
+  <a href="https://console.firebase.google.com/" target="_blank">
+    <img src="https://img.shields.io/static/v1?label=&message=Firebase&color=202124&style=flat-square&logo=Firebase"/>
+  </a>
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Projeto Autenticação Com Google
 
-## Available Scripts
+### <a href="https://jacksonrp1.github.io/AutenticacaoComGoogle/build/" target="_blank">Clique aqui</a> para visualizar o projeto concluído.
 
-In the project directory, you can run:
+#### Scripts Disponíveis
 
-### `npm start`
+```
+git clone https://github.com/jacksonrp1/AutenticacaoComGoogle.git
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### Dentro do projeto recém-clonado, você pode executar:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+npm install
+```
 
-### `npm test`
+No diretório do projeto, execute:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+npm start
+```
 
-### `npm run build`
+Abra http://localhost:3000 para visualizá-lo em seu navegador.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+A página será recarregada quando você fizer alterações.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Realizar configuração do Firebase para gerenciar as autenticações.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<!--ts-->
+  * Acesse <a href="https://console.firebase.google.com/" target="_blank">Firebase</a> e realize seu cadastro.
+    * Clique em "Adicionar projeto".
+    * Insira o nome do projeto.
+    * Se não quiser manter o Google Analytics neste projeto, demarque embaixo e clique em "Criar projeto".
+    
+  * Na tela inicial, abaixo de "Comece adicionando o Firebase ao seu aplicativo" selecione o tipo de projeto que criar, neste exemplo utilizei "WEB".
+    * Em "Registrar app", coloque um Apelido do app e depois em "Registrar app".
+    * Em "Adicionar o SDK do Firebase", copie a "const firebaseConfig" e guarde para mais tarde.
+    * Depois clique em "Continuar no console".
+    
+  * Clique em "Criação" e depois "Authentication".
+    * Clique em "Vamos começar".
+    * Selecione o método de login que quer "incluir".
+    * Em "Provedores" de login selecione Ativar e coloque um "E-mail de suporte do projeto" e depois em "Salvar".
+<!--te-->
 
-### `npm run eject`
+## Modifique o arquivo "firebase.js" dentro da pasta "src/service" e substitua a "const firebaseConfig" com a que você guardou :
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+``` javascript
+import { initializeApp } from 'firebase/app'
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+const firebaseConfig = {
+  apiKey: 'AIzaSyCZfR-W5kL801E6Cwaey-GjxXCZBlVieXk',
+  authDomain: 'teste-66d36.firebaseapp.com',
+  projectId: 'teste-66d36',
+  storageBucket: 'teste-66d36.appspot.com',
+  messagingSenderId: '616727271116',
+  appId: '1:616727271116:web:9e331ead346bbd2df09469'
+}
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+const app = initializeApp(firebaseConfig)
+const auth = getAuth()
+const provider = new GoogleAuthProvider()
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+export { provider, app, auth, signInWithPopup }
 
-## Learn More
+```
+#### Neste projeto eu utilizei o localStorage para servir como simulação de banco de dados.
+![image](https://user-images.githubusercontent.com/83042566/216134237-9f2d0b2f-a717-401c-846d-4aa5f9a5394b.png)
+![image](https://user-images.githubusercontent.com/83042566/216134421-e48f5075-44b9-410a-b351-33f6ae557849.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![image](https://user-images.githubusercontent.com/83042566/216134536-3a821d92-2ac6-4a02-a775-3af71718b435.png)
+![image](https://user-images.githubusercontent.com/83042566/216134735-5da84cc8-50b9-40ca-89dc-642f47e15484.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### No painel "Autentication" você consegue ver por qual provedor o usuário logou e gerenciar
+![image](https://user-images.githubusercontent.com/83042566/216135896-a2b595a9-92e9-466b-afb5-fb301b56941a.png)
+![image](https://user-images.githubusercontent.com/83042566/216135360-bae48aba-913c-4d29-84bc-ec762184042a.png)
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Você também pode ver erros no console.
+```
+npm test
+```
+Inicia o executor de teste no modo de observação interativo.
+Consulte a seção sobre como executar testes para obter mais informações.
+```
+npm run build
+```
+Cria o aplicativo para produção na pasta `build`.
+Ele agrupa corretamente o React no modo de produção e otimiza a compilação para o melhor desempenho.
+A compilação é minificada e os nomes dos arquivos incluem os hashes.
+Seu aplicativo está pronto para ser implantado!
